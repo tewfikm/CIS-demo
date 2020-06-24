@@ -38,5 +38,6 @@ spec:
             "--insecure=true",
             "--bigip-partition=kubernetes",
             "--namespace=default",
-            "--pool-member-type=nodeport"
+            "--pool-member-type=nodeport",
+            "--log-level=DEBUG"
           ]
