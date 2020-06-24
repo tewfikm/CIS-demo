@@ -75,3 +75,5 @@ f5-hello-world-web-5cb565dd65-gtl7d   1/1     Running   0          33s    10.244
 main-58677fd88f-bn7xc                 1/1     Running   0          107m   10.244.1.117   knode1   <none>           <none>
 
 kubectl describe svc f5-hello-world
+
+kubectl logs k8s-bigip-ctlr-1-5577d848b9-jtwts --namespace kube-system

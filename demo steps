@@ -7,13 +7,13 @@ kubectl apply -f /home/ubuntu/Arcadia_k8S/all_apps.yaml
 CHECK SERVICES ON CHROME ON JUMPHOST
 SHOW THAT ARCADIA is Deployed but not yet published
 
-PHASE2
+##PHASE2
 Publish Arcadia with KIC
 deply KIC 
 
 kubectl apply -f /home/ubuntu/k8s_ingress/full_ingress_arcadia.yaml
 
-
+##PHASE3
 DEPLOY CIS using NODEPORT on BIGIP1 10.1.1.10
 
 git clone -b master https://github.com/tewfikm/CIS-demo.git ~/CIS-demo
@@ -43,3 +43,13 @@ Let's deploy an APP
 kubectl create -f deployment-hello-world.yaml
 kubectl create -f nodeport-service-hello-world.yaml
 kubectl create -f ingress-hello-world.yaml
+
+kubectl logs k8s-bigip-ctlr-1-5577d848b9-jtwts --namespace kube-system
+
+##PHASE 4 : DEPLOY CIS in cluster Mode
+Show BIGIP 2
+deploy another CIS for BIGip 2
+
+
+
+
