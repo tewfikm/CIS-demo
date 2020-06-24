@@ -47,9 +47,23 @@ kubectl create -f ingress-hello-world.yaml
 kubectl logs k8s-bigip-ctlr-1-5577d848b9-jtwts --namespace kube-system
 
 ##PHASE 4 : DEPLOY CIS in cluster Mode
-Show BIGIP 2
+Show BIGIP 2 vxlan
 deploy another CIS for BIGip 2
+kubectl create -f bigip-node.yaml
+kubectl get nodes
 
+kubectl create serviceaccount k8s-bigip-ctlr-2 -n kube-system
+kubectl create clusterrolebinding k8s-bigip-ctlr-clusteradmin-2 --clusterrole=cluster-admin --serviceaccount=kube-system:k8s-bigip-ctlr-2
 
+kubectl create -f clusterip-deployment.yaml
+kubectl get deployment k8s-bigip-ctlr-2 --namespace kube-system
+kubectl get pods -o wide -n kube-system
 
+### PHASE 5 : DEPLOY APP
+kubectl create -f deployment-hello-world.yaml
+kubectl create -f clusterip-service-hello-world.yaml
+kubectl create -f ingress-hello-world.yaml
 
+show scaleup
+
+### PHASE 6: NAP DEPLOY
