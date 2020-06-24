@@ -1,0 +1,60 @@
+notes 
+
+
+ubuntu@ip-10-1-1-9:~$ kubectl apply -f /home/ubuntu/Arcadia_k8S/all_apps.yaml
+service/backend created
+deployment.apps/backend created
+service/main created
+deployment.apps/main created
+service/app2 created
+deployment.apps/app2 created
+service/app3 created
+deployment.apps/app3 created
+
+
+ubuntu@ip-10-1-1-9:~$ kubectl apply -f /home/ubuntu/k8s_ingress/full_ingress_arcadia.yaml
+namespace/nginx-ingress created
+serviceaccount/nginx-ingress created
+clusterrole.rbac.authorization.k8s.io/nginx-ingress created
+clusterrolebinding.rbac.authorization.k8s.io/nginx-ingress created
+secret/default-server-secret created
+configmap/nginx-config created
+customresourcedefinition.apiextensions.k8s.io/virtualservers.k8s.nginx.org created
+customresourcedefinition.apiextensions.k8s.io/virtualserverroutes.k8s.nginx.org created
+customresourcedefinition.apiextensions.k8s.io/transportservers.k8s.nginx.org created
+secret/gitlab-token-auth created
+deployment.apps/nginx-ingress created
+service/nginx-ingress created
+ingress.extensions/arcadia-ingress created
+
+
+ubuntu@ip-10-1-1-9:~$ kubectl get nodes
+NAME      STATUS   ROLES    AGE   VERSION
+kmaster   Ready    master   74d   v1.18.1
+knode1    Ready    <none>   74d   v1.18.1
+knode2    Ready    <none>   74d   v1.18.1
+ubuntu@ip-10-1-1-9:~$ kubectl create secret generic bigip-login -n kube-system --from-literal=username=admin --from-literal=password=Letmein41!
+secret/bigip-login created
+
+ubuntu@ip-10-1-1-9:~/CIS-demo/Node Port Mode$ kubectl create serviceaccount k8s-bigip-ctlr-1 -n kube-system
+serviceaccount/k8s-bigip-ctlr-1 created
+
+
+ubuntu@ip-10-1-1-9:~$ kubectl create clusterrolebinding k8s-bigip-ctlr-clusteradmin-1 --clusterrole=cluster-admin --serviceaccount=kube-system:k8s-bigip-ctlr-1
+clusterrolebinding.rbac.authorization.k8s.io/k8s-bigip-ctlr-clusteradmin-1 created
+
+git clone -b master https://github.com/tewfikm/CIS-demo.git ~/CIS-demo
+
+
+ubuntu@ip-10-1-1-9:~/CIS-demo/Node Port Mode$ kubectl create -f nodeport-deployment.yaml
+deployment.apps/k8s-bigip-ctlr-1 created
+
+
+
+ubuntu@ip-10-1-1-9:~/CIS-demo/Node Port Mode$ kubectl get deployment k8s-bigip-ctlr-1 --namespace kube-system
+NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+k8s-bigip-ctlr-1   1/1     1            1           21s
+
+
+
+

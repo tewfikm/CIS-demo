@@ -1,0 +1,45 @@
+NGINX APP PROTEC demo
+
+1 - DEPLOY ARCADIA
+SSH ON CICD server : 
+kubectl apply -f /home/ubuntu/Arcadia_k8S/all_apps.yaml
+
+CHECK SERVICES ON CHROME ON JUMPHOST
+SHOW THAT ARCADIA is Deployed but not yet published
+
+PHASE2
+Publish Arcadia with KIC
+deply KIC 
+
+kubectl apply -f /home/ubuntu/k8s_ingress/full_ingress_arcadia.yaml
+
+
+DEPLOY CIS using NODEPORT on BIGIP1 10.1.1.10
+
+git clone -b master https://github.com/tewfikm/CIS-demo.git ~/CIS-demo
+
+
+cd CIS-demo
+
+cd Node\ Port\ Mode/
+
+kubectl get nodes
+
+kubectl create secret generic bigip-login -n kube-system --from-literal=username=admin --from-literal=password=Letmein41!
+
+kubectl create serviceaccount k8s-bigip-ctlr -n kube-system
+
+kubectl create clusterrolebinding k8s-bigip-ctlr-clusteradmin-1 --clusterrole=cluster-admin --serviceaccount=kube-system:k8s-bigip-ctlr-1
+
+kubectl create -f nodeport-deployment.yaml
+
+kubectl get deployment k8s-bigip-ctlr-1 --namespace kube-system
+
+kubectl get pods -o wide -n kube-system   
+
+NOW CIS is installed in NODEPORT
+
+Let's deploy an APP
+kubectl create -f deployment-hello-world.yaml
+kubectl create -f nodeport-service-hello-world.yaml
+kubectl create -f ingress-hello-world.yaml
