@@ -4,7 +4,7 @@ metadata:
   name: f5-hello-world-web-2
   namespace: default
   labels:
-    app: f5-hello-world-web
+    app: f5-hello-world-web-2
     cis.f5.com/as3-tenant: AS3
     cis.f5.com/as3-app: A1
     cis.f5.com/as3-pool: web_pool
@@ -16,4 +16,4 @@ spec:
     targetPort: 8080
   type: ClusterIP
   selector:
-    app: f5-hello-world-web
+    app: f5-hello-world-web-2
