@@ -60,9 +60,9 @@ kubectl get deployment k8s-bigip-ctlr-2 --namespace kube-system
 kubectl get pods -o wide -n kube-system
 
 ### PHASE 5 : DEPLOY APP
-kubectl create -f deployment-hello-world.yaml
-kubectl create -f clusterip-service-hello-world.yaml
-kubectl create -f ingress-hello-world.yaml
+kubectl create -f deployment-hello-world-2.yaml
+kubectl create -f clusterip-service-hello-world-2.yaml
+kubectl create -f ingress-hello-world-2.yaml
 
 show scaleup
 
