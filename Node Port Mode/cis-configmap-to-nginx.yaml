@@ -22,23 +22,23 @@ data:
              "template": "generic",
              "ingress": {
                 "class": "Service_TCP",
-                "virtualAddresses": ["10.1.10.10"],
+                "virtualAddresses": ["10.1.1.12"],
                "remark":"ingress: f5demo.tcp.v1",
 
-               "virtualPort": 80,
+               "virtualPort": 8088,
                 "pool": "ingress_pool"
              },
              "ingress_pool": {
                 "class": "Pool",
                 "monitors": [ "tcp" ],
                 "members": [{
-                   "servicePort": 80,
+                   "servicePort": 30274,
                    "serverAddresses": []
                 }]
              },
              "ingresstls": {
                 "class": "Service_TCP",
-                "virtualAddresses": ["10.1.10.10"],
+                "virtualAddresses": ["10.1.1.12"],
                "remark":"ingresstls: f5demo.tcp.v1",
 
                "virtualPort": 443,
@@ -54,7 +54,7 @@ data:
              },
              "dashboard": {
                 "class": "Service_TCP",
-                "virtualAddresses": ["10.1.10.10"],
+                "virtualAddresses": ["10.1.1.12"],
                "remark":"dashboard: f5demo.tcp.v1",
 
                "virtualPort": 8080,
