@@ -55,6 +55,23 @@ ubuntu@ip-10-1-1-9:~/CIS-demo/Node Port Mode$ kubectl get deployment k8s-bigip-c
 NAME               READY   UP-TO-DATE   AVAILABLE   AGE
 k8s-bigip-ctlr-1   1/1     1            1           21s
 
+rm -r -I CIS-demo/
+
+ubuntu@ip-10-1-1-9:~/CIS-demo/Node Port Mode$ kubectl create -f deployment-hello-world.yaml
+deployment.apps/f5-hello-world-web created
+ubuntu@ip-10-1-1-9:~/CIS-demo/Node Port Mode$ kubectl create -f nodeport-service-hello-world.yaml
+service/f5-hello-world-web created
+ubuntu@ip-10-1-1-9:~/CIS-demo/Node Port Mode$ kubectl create -f ingress-hello-world.yaml
+ingress.extensions/f5-hello-world-web created
 
 
+ubuntu@ip-10-1-1-9:~/CIS-demo/Node Port Mode$ kubectl get pods -o wide
+NAME                                  READY   STATUS    RESTARTS   AGE    IP             NODE     NOMINATED NODE   READINESS GATES
+app2-7bbdd454bb-kp4gk                 1/1     Running   0          107m   10.244.1.118   knode1   <none>           <none>
+app3-77cb588b5-wzxsw                  1/1     Running   0          107m   10.244.2.141   knode2   <none>           <none>
+backend-5456658688-xcld2              1/1     Running   0          107m   10.244.2.140   knode2   <none>           <none>
+f5-hello-world-web-5cb565dd65-fh2sg   1/1     Running   0          33s    10.244.1.120   knode1   <none>           <none>
+f5-hello-world-web-5cb565dd65-gtl7d   1/1     Running   0          33s    10.244.2.143   knode2   <none>           <none>
+main-58677fd88f-bn7xc                 1/1     Running   0          107m   10.244.1.117   knode1   <none>           <none>
 
+kubectl describe svc f5-hello-world
