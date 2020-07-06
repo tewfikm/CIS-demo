@@ -91,6 +91,12 @@ kubectl get pods
 
 
 
+## PHASE 6 : ADD CIS in FRONT OF KIC
+
+kubectl apply -f nodeport-cis-kic-80.yaml
+kubectl apply -f cis-kic-configmap-80.yaml
+
+
 
 ### PHASE 6: NAP DEPLOY
 
