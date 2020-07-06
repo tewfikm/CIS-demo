@@ -76,3 +76,32 @@ kubectl get pods
 
 
 FINISH
+
+
+CLEANUP on BIGIP 1
+
+DELETE INGRESS
+kubectl delete -f deployment-hello-world.yaml
+kubectl delete -f nodeport-service-hello-world.yaml
+kubectl delete -f ingress-hello-world.yaml
+
+DELETE CONFIG MAP :
+kubectl delete -f configmap-hello-world.yaml
+kubectl delete -f nodeport-service-hello-world.yaml
+kubectl delete -f deployment-hello-world.yaml
+kubectl create -f delete-hello-world.yaml
+kubectl delete -f delete-hello-world.yaml
+
+CLEANUP on BIGIP 2
+DELETE INGRESS
+kubectl delete -f ingress-hello-world-2.yaml
+kubectl delete -f clusterip-service-hello-world.yaml
+kubectl delete -f deployment-hello-world-2.yaml
+
+DELETE CONFIG MAP
+kubectl delete -f configmap-hello-world-2.yaml
+kubectl delete -f clusterip-service-hello-world.yaml
+kubectl delete -f deployment-hello-world-2.yaml
+kubectl create -f delete-hello-world.yaml
+kubectl delete -f delete-hello-world.yaml
+
