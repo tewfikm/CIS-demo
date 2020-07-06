@@ -8,7 +8,7 @@ metadata:
     cis.f5.com/as3-app: MyApps
     cis.f5.com/as3-pool: ingress_pool
 spec:
-  type: NodePort 
+  type: ClusterIP 
   ports:
   - port: 80
     targetPort: 80
