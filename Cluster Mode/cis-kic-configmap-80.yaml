@@ -20,7 +20,7 @@ data:
             "remark": "A1 example",
             "AS3": {
                 "class": "Tenant",
-                "A1": {
+                "MyApps": {
                     "class": "Application",
                     "template": "http",
                     "serviceMain": {
@@ -28,10 +28,10 @@ data:
                         "virtualAddresses": [
                             "10.1.1.13"
                         ],
-                        "pool": "web_pool",
+                        "pool": "ingress_pool",
                         "virtualPort": 8080
                     },
-                    "web_pool": {
+                    "ingress_pool": {
                         "class": "Pool",
                         "monitors": [
                             "http"
