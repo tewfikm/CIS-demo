@@ -93,8 +93,8 @@ kubectl get pods
 
 ## PHASE 6 : ADD CIS in FRONT OF KIC
 
-kubectl apply -f nodeport-cis-kic-80.yaml
-kubectl apply -f cis-kic-configmap-80.yaml
+kubectl create -f nodeport-cis-kic-80.yaml
+kubectl create -f cis-kic-configmap-80.yaml
 
 
 

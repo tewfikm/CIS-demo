@@ -12,7 +12,13 @@ spec:
   ports:
   - port: 80
     targetPort: 80
+    nodePort: 30274
     protocol: TCP
     name: http
+  - port: 443
+    targetPort: 443
+    nodePort: 30275
+    protocol: TCP
+    name: https
   selector:
     app: nginx-ingress
