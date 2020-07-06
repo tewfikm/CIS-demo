@@ -37,6 +37,8 @@ kubectl get deployment k8s-bigip-ctlr-1 --namespace kube-system
 
 kubectl get pods -o wide -n kube-system   
 
+kubectl describe svc f5-hello-world
+
 NOW CIS is installed in NODEPORT
 
 Let's deploy an APP
@@ -47,15 +49,28 @@ kubectl create -f ingress-hello-world.yaml
 kubectl logs k8s-bigip-ctlr-1-5577d848b9-jtwts --namespace kube-system
 
 ##PHASE 4 : DEPLOY CIS in cluster Mode
+
+
+
 Show BIGIP 2 vxlan
+kubectl get po --namespace kube-system -l app=flannel
+kubectl logs --namespace kube-system kube-flannel-ds-amd64-6hv77 -c kube-flannel
+
+
+
 deploy another CIS for BIGip 2
+
 kubectl create -f bigip-node.yaml
 kubectl get nodes
+kubectl get pods -o wide -n kube-system
+
+
 
 kubectl create serviceaccount k8s-bigip-ctlr-2 -n kube-system
 kubectl create clusterrolebinding k8s-bigip-ctlr-clusteradmin-2 --clusterrole=cluster-admin --serviceaccount=kube-system:k8s-bigip-ctlr-2
 
 kubectl create -f clusterip-deployment.yaml
+
 kubectl get deployment k8s-bigip-ctlr-2 --namespace kube-system
 kubectl get pods -o wide -n kube-system
 

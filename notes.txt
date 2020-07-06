@@ -44,7 +44,7 @@ ubuntu@ip-10-1-1-9:~$ kubectl create clusterrolebinding k8s-bigip-ctlr-clusterad
 clusterrolebinding.rbac.authorization.k8s.io/k8s-bigip-ctlr-clusteradmin-1 created
 
 git clone -b master https://github.com/tewfikm/CIS-demo.git ~/CIS-demo
-
+git pull
 
 ubuntu@ip-10-1-1-9:~/CIS-demo/Node Port Mode$ kubectl create -f nodeport-deployment.yaml
 deployment.apps/k8s-bigip-ctlr-1 created
@@ -77,3 +77,30 @@ main-58677fd88f-bn7xc                 1/1     Running   0          107m   10.244
 kubectl describe svc f5-hello-world
 
 kubectl logs k8s-bigip-ctlr-1-5577d848b9-jtwts --namespace kube-system
+
+
+ubuntu@ip-10-1-1-9:~/CIS-demo/Cluster Mode$ ssh admin@10.1.1.13
+Password:
+Last login: Wed Jun 24 07:40:12 2020 from 10.1.1.254
+admin@(ip-10-1-1-13)(cfg-sync Standalone)(Active)(/Common)(tmos)#
+admin@(ip-10-1-1-13)(cfg-sync Standalone)(Active)(/Common)(tmos)# show net tunnels tunnel k8s-tunnel all-properties
+
+-------------------------------------------------
+Net::Tunnel: k8s-tunnel
+-------------------------------------------------
+MAC Address                     02:7a:0d:78:2a:21
+Interface Name                         k8s-tunnel
+
+Incoming Discard Packets                    25.7K
+Incoming Error Packets                          0
+Incoming Unknown Proto Packets                  0
+Outgoing Discard Packets                        0
+Outgoing Error Packets                       1.3K
+HC Incoming Octets                         985.3K
+HC Incoming Unicast Packets                 13.2K
+HC Incoming Multicast Packets                  14
+HC Incoming Broadcast Packets                   0
+HC Outgoing Octets                           1.3M
+HC Outgoing Unicast Packets                 19.7K
+HC Outgoing Multicast Packets                   0
+HC Outgoing Broadcast Packets                   0
