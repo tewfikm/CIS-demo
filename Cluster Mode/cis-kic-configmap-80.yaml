@@ -38,7 +38,7 @@ data:
                         ],
                         "members": [
                             {
-                                "servicePort": 30274,
+                                "servicePort": 80,
                                 "serverAddresses": []
                             }
                         ]
