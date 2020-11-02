@@ -104,3 +104,10 @@ HC Outgoing Octets                           1.3M
 HC Outgoing Unicast Packets                 19.7K
 HC Outgoing Multicast Packets                   0
 HC Outgoing Broadcast Packets                   0
+
+
+
+tshoot
+
+kubectl get pod --namespace=kube-system
+ kubectl get pod k8s-bigip-ctlr-2-67bf8d8f87-5z7m6 -o yaml --namespace=kube-system

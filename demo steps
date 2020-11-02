@@ -50,6 +50,13 @@ kubectl describe svc f5-hello-world
 kubectl get pods -o wide -n kube-system
 kubectl logs k8s-bigip-ctlr-1-5577d848b9-jtwts --namespace kube-system
 
+show scaleup
+kubectl scale --replicas=10 deployment/f5-hello-world-web -n default
+kubectl get pods
+
+
+
+
 ##PHASE 4 : DEPLOY CIS in cluster Mode
 
 create VXLAN node member:
@@ -68,8 +75,6 @@ deploy another CIS for BIGip 2
 
 kubectl get nodes
 kubectl get pods -o wide -n kube-system
-
-
 
 kubectl create serviceaccount k8s-bigip-ctlr-2 -n kube-system
 kubectl create clusterrolebinding k8s-bigip-ctlr-clusteradmin-2 --clusterrole=cluster-admin --serviceaccount=kube-system:k8s-bigip-ctlr-2
